@@ -1,0 +1,8 @@
+/target/
+.settings
+/.project
+/.classpath
+/.iml
+/out/
+/.idea/
+/java_demo.iml
