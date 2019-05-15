@@ -16,7 +16,7 @@ package com.yw.thread.day01.ticket;
 public class Client {
 	public static void main(String[] args) throws InterruptedException {
 		Ticket target = new Ticket();
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 2; i++) {
 			new Thread(target).start();
 		}
 	}

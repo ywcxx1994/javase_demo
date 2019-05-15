@@ -14,7 +14,7 @@ package com.yw.thread.day01.ticket;
 * @author Yan Wei  
 */
 public class Ticket implements Runnable{
-	private int count=1000;//100张票
+	private int count=5000;//100张票
 	Object obj = new Object();//锁对象，必须保证是同一个
 	public int getCount() {
 		return count;
@@ -30,6 +30,9 @@ public class Ticket implements Runnable{
 				synchronized (this) {
 					if(count>0) {
 						System.out.println(Thread.currentThread().getName()+":"+count--);
+					}
+					else{
+						break;
 					}
 			}
 		}

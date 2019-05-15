@@ -14,7 +14,8 @@ import com.yw.thread.day02.other.countdownlatch.Worker;
 
 /** 
 * @ClassName: CountDownLatchDemo 
-* @Description: CountDownLatch实现共享锁
+* @Description: CountDownLatch实现共享锁，
+ * 模拟worker2等待0和1执行完毕才开始执行。
 * @author Yan Wei  
 */
 public class CountDownLatchDemo {

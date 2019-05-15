@@ -14,7 +14,7 @@ package com.yw.thread.day01.bank;
 * @author Yan Wei  
 */
 public class Bank {
-	private int sum;
+	private  int sum;
 	public void add(int num) {
 		System.out.println(this);
 		synchronized (this) {
