@@ -6,9 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 
-@Target({ElementType.TYPE,ElementType.METHOD,ElementType.PARAMETER})
+@Target({ElementType.TYPE, ElementType.METHOD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Test {
-	String value() default "fuck";
-	String name() ;
+    String value() default "fuck";
+
+    String name();
 }

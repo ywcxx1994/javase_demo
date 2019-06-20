@@ -9,13 +9,13 @@ import java.util.concurrent.*;
  * @desc: Callable测试
  */
 public class CallableDemo {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
         Future<Integer> result = executorService.submit(new CallableTask());
         Thread.sleep(1000);
         System.out.println("主线程在执行任务");
         try {
-            System.out.println("task运行结果"+result.get(2000, TimeUnit.MILLISECONDS));
+            System.out.println("task运行结果" + result.get(2000, TimeUnit.MILLISECONDS));
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -27,15 +27,16 @@ public class CallableDemo {
         executorService.shutdown();
     }
 }
+
 class CallableTask implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
         System.out.println("子线程在进行计算");
-        int sum=0;
+        int sum = 0;
         Thread.sleep(1000);
-        for(int i=0;i<100;i++){
-            sum+=i;
+        for (int i = 0; i < 100; i++) {
+            sum += i;
         }
         return sum;
     }

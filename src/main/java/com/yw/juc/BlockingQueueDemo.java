@@ -12,16 +12,18 @@ import java.util.concurrent.TimeUnit;
  */
 public class BlockingQueueDemo {
     public static void main(String[] args) throws Exception {
-        Element e = new  Element(3000,"3秒后过期");
+        Element e = new Element(3000, "3秒后过期");
         BlockingQueue<Element> delayQueue = new DelayQueue<>();
         delayQueue.put(e);
         System.out.println(delayQueue.take().toString());
     }
-    static class Element implements Delayed{
-        long expired,delay;
+
+    static class Element implements Delayed {
+        long expired, delay;
         String name;
+
         public Element(long delay, String name) {
-            this.expired = delay+System.currentTimeMillis();
+            this.expired = delay + System.currentTimeMillis();
             this.delay = delay;
             this.name = name;
         }

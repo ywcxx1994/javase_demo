@@ -1,20 +1,20 @@
 /**
-* @Company JBINFO   
-* @Title: Client.java 
-* @Package com.yw.design.behavior.strategy.improve 
-* @author Yan Wei   
-* @date 2018年3月26日 上午11:58:02 
-* @version V1.0   
-*/ 
+ * @Company JBINFO
+ * @Title: Client.java
+ * @Package com.yw.design.behavior.strategy.improve
+ * @author Yan Wei
+ * @date 2018年3月26日 上午11:58:02
+ * @version V1.0
+ */
 package com.yw.design.behavior.strategy.improve;
 
 import com.yw.design.behavior.strategy.Customer;
 
-/** 
-* @ClassName: Client 
-* @Description: TODO(这里用一句话描述这个类的作用) 
-* @author Yan Wei  
-*/
+/**
+ * @ClassName: Client
+ * @Description: TODO(这里用一句话描述这个类的作用)
+ * @author Yan Wei
+ */
 public class Client {
 
     public static void main(String[] args) {
@@ -30,5 +30,5 @@ public class Client {
         customer.buy(2600D);
         System.out.println("客户需要付钱：" + customer.calLastAmount());
     }
-    
+
 }

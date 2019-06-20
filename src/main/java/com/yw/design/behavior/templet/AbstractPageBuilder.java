@@ -1,10 +1,11 @@
 package com.yw.design.behavior.templet;
 
-public abstract class AbstractPageBuilder implements PageBuilder{
-	private StringBuffer stringBuffer = new StringBuffer();
-	@Override
-	public String bulidHtml() {
-		  //首先加入doctype,因为都是html页面,所以我们父类不需要推迟给子类实现,直接在父类实现
+public abstract class AbstractPageBuilder implements PageBuilder {
+    private StringBuffer stringBuffer = new StringBuffer();
+
+    @Override
+    public String bulidHtml() {
+        //首先加入doctype,因为都是html页面,所以我们父类不需要推迟给子类实现,直接在父类实现
         stringBuffer.append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">");
         //页面下面就是成对的一个HTML标签，我们也在父类加入,不需要给子类实现
         stringBuffer.append("<html xmlns=\"http://www.w3.org/1999/xhtml\">");
@@ -15,9 +16,11 @@ public abstract class AbstractPageBuilder implements PageBuilder{
         //html标签的关闭
         stringBuffer.append("</html>");
         return stringBuffer.toString();
-	}
-	 //第一个模板方法
-	protected abstract void appendHead(StringBuffer stringBuffer);
-	//第一个模板方法
-	protected abstract void appendBody(StringBuffer stringBuffer);
+    }
+
+    //第一个模板方法
+    protected abstract void appendHead(StringBuffer stringBuffer);
+
+    //第一个模板方法
+    protected abstract void appendBody(StringBuffer stringBuffer);
 }

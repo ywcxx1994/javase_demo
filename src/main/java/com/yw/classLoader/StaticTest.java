@@ -2,29 +2,30 @@ package com.yw.classLoader;
 
 
 public class StaticTest {
-	static StaticTest st = new StaticTest();
-	int a = 110;
+    static StaticTest st = new StaticTest();
+    int a = 110;
 
-	static {
-		System.out.println("1");
-	}
-	static int b = 112;
+    static {
+        System.out.println("1");
+    }
 
-	{
-		System.out.println("2");
-	}
+    static int b = 112;
 
-	StaticTest() {
-		System.out.println("3");
-		System.out.println("a=" + a + ",b=" + b);
-	}
+    {
+        System.out.println("2");
+    }
 
-	public static void staticFunction() {
-		System.out.println("4");
-	}
+    StaticTest() {
+        System.out.println("3");
+        System.out.println("a=" + a + ",b=" + b);
+    }
 
-	public static void main(String[] args) {
-		staticFunction();
-	}
+    public static void staticFunction() {
+        System.out.println("4");
+    }
+
+    public static void main(String[] args) {
+        staticFunction();
+    }
 
 }

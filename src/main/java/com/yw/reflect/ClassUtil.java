@@ -5,48 +5,50 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class ClassUtil {
-	public static void printMethod(Object obj) {
-		Class clazz = obj.getClass();
-		System.out.println("ÀàµÄÃû³ÆÊÇ" + clazz.getName());
-		// »ñÈ¡¸ÃÀàµÄpublic·½·¨£¬°üº¬¼Ì³ÐµÄ
-		Method[] method = clazz.getMethods();
-		for (int i = 0; i < method.length; i++) {
-			// µÃµ½·µ»ØÖµÀàÐÍ¶ÔÓ¦µÄÀàÀàÐÍ
-			Class returnType = method[i].getReturnType();
-			System.out.print(returnType.getName() + " " + method[i].getName() + "(");
-			// µÃµ½²ÎÊýÀàÐÍ
-			Class[] paramType = method[i].getParameterTypes();
-			for (Class class1 : paramType) {
-				System.out.print(class1.getSimpleName() + ",");
-			}
-			System.out.println(")");
+    public static void printMethod(Object obj) {
+        Class clazz = obj.getClass();
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + clazz.getName());
+        // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½publicï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³Ðµï¿½
+        Method[] method = clazz.getMethods();
+        for (int i = 0; i < method.length; i++) {
+            // ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½Í¶ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            Class returnType = method[i].getReturnType();
+            System.out.print(returnType.getName() + " " + method[i].getName() + "(");
+            // ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            Class[] paramType = method[i].getParameterTypes();
+            for (Class class1 : paramType) {
+                System.out.print(class1.getSimpleName() + ",");
+            }
+            System.out.println(")");
 
-		}
-	}
-	public static void printFiled(Object obj) {
-		Class clazz = obj.getClass();
-		System.out.println("ÀàµÄÃû³ÆÊÇ" + clazz.getName());
-		// »ñÈ¡¸ÃÀàµÄpublic·½·¨£¬°üº¬¼Ì³ÐµÄ
-		Field[] field = clazz.getDeclaredFields();
-		for (Field field2 : field) {
-			//System.out.print(field2.getModifiers()+"\t");
-			//System.out.print(field2.getGenericType()+"\t");
-			System.out.print(field2.getType().getName()+"\t");
-			System.out.println(field2.getName());
-		}
-	}
-	public static void printConstruct(Object obj) {
-		Class clazz = obj.getClass();
-		System.out.println("ÀàµÄÃû³ÆÊÇ" + clazz.getName());
-		// »ñÈ¡¸ÃÀàµÄpublic·½·¨£¬°üº¬¼Ì³ÐµÄ
-		Constructor[]  c = clazz.getConstructors();
-		for (Constructor constructor : c) {
-			System.out.print(constructor.getName()+"(");
-			Class[] cc = constructor.getParameterTypes();
-			for (Class class1 : cc) {
-				System.out.print(class1.getName()+",");
-			}
-			System.out.println(")");
-		}
-	}
+        }
+    }
+
+    public static void printFiled(Object obj) {
+        Class clazz = obj.getClass();
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + clazz.getName());
+        // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½publicï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³Ðµï¿½
+        Field[] field = clazz.getDeclaredFields();
+        for (Field field2 : field) {
+            //System.out.print(field2.getModifiers()+"\t");
+            //System.out.print(field2.getGenericType()+"\t");
+            System.out.print(field2.getType().getName() + "\t");
+            System.out.println(field2.getName());
+        }
+    }
+
+    public static void printConstruct(Object obj) {
+        Class clazz = obj.getClass();
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½" + clazz.getName());
+        // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½publicï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³Ðµï¿½
+        Constructor[] c = clazz.getConstructors();
+        for (Constructor constructor : c) {
+            System.out.print(constructor.getName() + "(");
+            Class[] cc = constructor.getParameterTypes();
+            for (Class class1 : cc) {
+                System.out.print(class1.getName() + ",");
+            }
+            System.out.println(")");
+        }
+    }
 }

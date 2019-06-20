@@ -1,6 +1,6 @@
 package com.yw.design.behavior.guanCha;
 
-public class ConcreteObserver1 implements Observer{
+public class ConcreteObserver1 implements Observer {
 
 
     public void update(Observable o) {

@@ -8,9 +8,9 @@ package com.yw.juc;
 public class ThreadLocalDemo {
     public static void main(String[] args) {
         QuerySvc qs = new QuerySvc();
-        for (int k=0; k<10;k++){
+        for (int k = 0; k < 10; k++) {
             String sql = "Select * from table where id =" + k;
-            new Work(qs,sql).start();
+            new Work(qs, sql).start();
         }
     }
 }
@@ -33,7 +33,7 @@ class QuerySvc {
         return sql;
     }
 
-    public  void setSql(String sql) {
+    public void setSql(String sql) {
         this.sql = sql;
         sqlHolder.set(sql);
 
@@ -45,11 +45,13 @@ class Work extends Thread {
 
     private QuerySvc querySvc;
     private String sql;
+
     public Work(QuerySvc querySvc, String sql) {
         this.querySvc = querySvc;
         this.sql = sql;
 
     }
+
     @Override
     public void run() {
         querySvc.setSql(sql);
