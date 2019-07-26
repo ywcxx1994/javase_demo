@@ -41,5 +41,35 @@ public class SortMapDemo {
         smap.put("g", 4);
         smap.put("v", 5);
         smap.forEach((k, v) -> System.out.println(k + "\t" + v));
+        SortedMap<TreeMapDemo, Integer> sortedMap = new TreeMap<>();
+        TreeMapDemo treeMapDemo1 = new TreeMapDemo("a",12);
+        TreeMapDemo treeMapDemo2 = new TreeMapDemo("a",6);
+        TreeMapDemo treeMapDemo3 = new TreeMapDemo("a",18);
+        sortedMap.put(treeMapDemo1,12);
+        sortedMap.put(treeMapDemo2,12);
+        sortedMap.put(treeMapDemo3,12);
+        sortedMap.forEach((k, v) -> System.out.println(k.toString() + "\t" + v));
+    }
+    static class TreeMapDemo implements Comparable<TreeMapDemo>{
+        public String name;
+        public int age;
+
+        public TreeMapDemo(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        @Override
+        public int compareTo(TreeMapDemo o) {
+            return o.age-this.age;
+        }
+
+        @Override
+        public String toString() {
+            return "TreeMapDemo{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    '}';
+        }
     }
 }
