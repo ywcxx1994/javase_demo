@@ -10,7 +10,7 @@ package com.yw.classLoader.order;
 
 /**
  * @ClassName: Person
- * @Description: TODO(这里用一句话描述这个类的作用)
+ * @Description:
  * @author Yan Wei
  */
 public class Person {

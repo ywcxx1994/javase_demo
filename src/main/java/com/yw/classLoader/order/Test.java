@@ -10,7 +10,7 @@ package com.yw.classLoader.order;
 
 /**
  * @ClassName: Test
- * @Description: TODO(这里用一句话描述这个类的作用)
+ * @Description:
  * @author Yan Wei
  */
 public class Test {
@@ -22,7 +22,7 @@ public class Test {
      * 被动引用
      */
     private static void passiveness() {
-        //1:调用类的常
+        //1:调用类的常量
         System.out.println(Person.ADRESS);
         //2:通过数组创建类的引用，不会初始化类
         Person[] p = new Person[2];
@@ -50,7 +50,7 @@ public class Test {
 
     public static void main(String[] args) throws Exception {
         //active();
-        //passiveness();
+        passiveness();
     }
 
 }
