@@ -14,24 +14,23 @@ package com.yw.classLoader;
  * @author Yan Wei
  */
 public class TestStatic {
-    //	static {
-//		System.out.println("static 1");
-//	}
-    private static int count1; // step 2
-    private static int count2 = 2; // step 3
-    private static TestStatic tester = new TestStatic(); // step 1
+    private static TestStatic tester = new TestStatic();
+    private static int count1;
+    private static int count2 = 2;
 
-    public TestStatic() { // step 4
+    public TestStatic() {
         count1++;
         count2++;
         System.out.println("" + count1 + "\t" + count2);
     }
 
     static {
-        System.out.println("static2 running" + count1);
+        System.out.println("静态代码块执行：" + count1);
     }
-
-    public static TestStatic getTester() { // step 5
+    {
+        System.out.println("构造代码块执行");
+    }
+    public static TestStatic getTester() {
         System.out.println(count1 + "\t" + count2);
         return tester;
     }
