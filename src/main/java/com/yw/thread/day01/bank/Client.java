@@ -17,9 +17,12 @@ public class Client {
     public static void main(String[] args) throws InterruptedException {
         Bank b = new Bank();
         Cus c = new Cus(b);
-        Thread t1 = new Thread(c);
-        Thread t2 = new Thread(c);
+        Thread t1 = new Thread(c,"旺财");
+        Thread t2 = new Thread(c,"wangcai");
         t1.start();
         t2.start();
+        t1.join();
+        t2.join();
+        System.out.println("总钱数："+b.getSum());
     }
 }

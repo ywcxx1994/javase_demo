@@ -13,14 +13,18 @@ package com.yw.thread.day01.bank;
  * @Description: TODO(这里用一句话描述这个类的作用)
  * @author Yan Wei
  */
+
 public class Bank {
     private int sum;
 
     public void add(int num) {
-        System.out.println(this);
         synchronized (this) {
             sum += num;
-            System.out.println("sum = " + sum);
+            System.out.println(Thread.currentThread().getName()+"sum = " + sum);
         }
+    }
+
+    public int getSum() {
+        return sum;
     }
 }
