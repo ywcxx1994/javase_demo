@@ -30,21 +30,17 @@ public class SingletonDemo {
         Set<String> classNames = Collections.synchronizedSet(new HashSet<>());
         CountDownLatch cdl = new CountDownLatch(1);
         ExecutorService executorService = new ThreadPoolExecutor(100, 100,
-                0L, TimeUnit.MILLISECONDS,
-                new LinkedBlockingQueue<Runnable>());
+                0L, TimeUnit.MILLISECONDS,new LinkedBlockingQueue<>(100));
         for (int i = 0; i < 100; i++) {
-            executorService.submit(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        //该线程会自动阻塞。
-                        cdl.await();
-                        String name = SingletonDemo.getInstance().toString();
-                        System.out.println(Thread.currentThread().getName() + "获取对象实例" + name);
-                        classNames.add(name);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+            executorService.submit(() -> {
+                try {
+                    //该线程会自动阻塞。
+                    cdl.await();
+                    String name = SingletonDemo.getInstance().toString();
+//                    System.out.println(Thread.currentThread().getName() + "获取对象实例" + name);
+                    classNames.add(name);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             });
         }
