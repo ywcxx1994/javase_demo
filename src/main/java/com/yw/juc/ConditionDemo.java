@@ -31,6 +31,7 @@ public class ConditionDemo {
         },"child").start();
         try {
             System.out.println("主线程等待通知");
+            //类比wait()方法，主线程执行到这里会释放锁，子线程才有机会获取到锁。
             condition.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
