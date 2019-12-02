@@ -7,7 +7,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * 实现类似object类的wait()和notify()，notifyAll()方法，
  *
  * Condition只能在lock后使用，通过ReentrantLock对象获取。
- * Created by 18765 on 2019/11/18 14:56
+ * Created by 18765 on 2019/11/18 14:56ThreadPoolDemo
  */
 public class ConditionDemo {
 

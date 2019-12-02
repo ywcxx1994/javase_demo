@@ -15,7 +15,7 @@ public class ThreadPoolDemo {
         ThreadFactory threadFactory = new MyThreadFactory();
         ThreadPoolExecutor threadPoolExecutor
             = new ThreadPoolExecutor(5, 10, 200,
-            TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(5),new MyRejectHandler());
+            TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(5),threadFactory,new MyRejectHandler());
         //当把i设置为20时，会出发ThreadPoolExecutor的拒绝策略。
         for (int i = 0; i < 20; i++) {
 
@@ -27,7 +27,7 @@ public class ThreadPoolDemo {
         countDownLatch.await();
         System.out.println("active:"+threadPoolExecutor.getPoolSize());
         //若不关闭线程池，则始终会有5个活跃线程
-//        threadPoolExecutor.shutdown();
+        threadPoolExecutor.shutdown();
     }
 
 }
@@ -56,6 +56,10 @@ class Task implements Runnable {
                 "，等待执行的任务数目：" + threadPoolExecutor.getQueue().size() + "，已执行的任务数目：" + threadPoolExecutor.getCompletedTaskCount());
     }
 }
+
+/**
+ * 自定义拒绝策略
+ */
 class MyRejectHandler implements RejectedExecutionHandler{
     @Override
     public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
@@ -65,12 +69,19 @@ class MyRejectHandler implements RejectedExecutionHandler{
         }
     }
 }
+
+/**
+ * 自定义线程工厂，指定线程名字，方便出问题排查,
+ *
+ * 线程池每次创建线程，回调用 newThread 方法。
+ */
 class MyThreadFactory implements ThreadFactory{
+    AtomicInteger count = new AtomicInteger(0);
     @Override
     public Thread newThread(Runnable r) {
-        AtomicInteger count = new AtomicInteger(0);
         String prefix = "yw-pool";
-        Thread thread = new Thread(prefix+count.getAndIncrement());
+        //注意创建线程，一定要把任务对象 r 传进来
+        Thread thread = new Thread(r,prefix+count.getAndIncrement());
         return thread;
     }
 }
