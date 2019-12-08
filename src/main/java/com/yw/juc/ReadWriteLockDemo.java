@@ -11,42 +11,52 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class ReadWriteLockDemo {
 
+    private static ReentrantLock lock = new ReentrantLock();
+    private static  ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+    private static Lock readLock = readWriteLock.readLock();
+    private static Lock writeLock = readWriteLock.writeLock();
+    private int value;
 
-    private static int value;
+    public Object handleRead(Lock lock) throws InterruptedException {
+       try{
+           lock.lock();
+           Thread.sleep(1000);
+           return value;
+       }finally {
+           lock.unlock();
+       }
+    }
+    public void  handlerWrite(Lock lock,int index) throws InterruptedException {
+        try{
+            lock.lock();
+            Thread.sleep(1000);
+            value = index;
+        }finally {
+            lock.unlock();
+        }
+    }
 
 
     public static void main(String[] args) {
-         ReentrantLock lock = new ReentrantLock();
-         ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-         Lock readLock = readWriteLock.readLock();
-         Lock writeLock = readWriteLock.writeLock();
+        ReadWriteLockDemo readWriteLockDemo = new ReadWriteLockDemo();
         Runnable read = ()->{
             try {
-                readLock.lock();
-                System.out.println(Thread.currentThread().getName()+value);
-                Thread.sleep(1);
+                System.out.println(readWriteLockDemo.handleRead(readLock));
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }finally {
-                readLock.unlock();
             }
         };
         Runnable write = ()->{
-            writeLock.lock();
             try {
-                ReadWriteLockDemo.value = new Random().nextInt(100);
-                Thread.sleep(1);
+                readWriteLockDemo.handlerWrite(writeLock,new Random().nextInt(1000));
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            }finally {
-                writeLock.unlock();
             }
         };
-        int j=0;
-        for (int i = j; i < 18; j++) {
+        for (int i = 0; i < 18; i++) {
             new Thread(read,"t"+i).start();
         }
-        for (int i =j ; i <= 20; j++) {
+        for (int i =18 ; i < 20; i++) {
             new Thread(read,"t"+i).start();
         }
     }
