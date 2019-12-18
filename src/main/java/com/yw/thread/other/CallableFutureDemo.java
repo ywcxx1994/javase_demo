@@ -1,9 +1,8 @@
 package com.yw.thread.other;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.*;
 
 /**
  * @author:YanWei
@@ -15,7 +14,7 @@ import java.util.concurrent.FutureTask;
  */
 public class CallableFutureDemo {
     public static void main(String[] args) {
-        CallableFutureDemo.demo2();
+        CallableFutureDemo.demo3();
     }
 
     /**
@@ -54,19 +53,52 @@ public class CallableFutureDemo {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
         long t1 = System.currentTimeMillis();
         Callable callable = () -> {
+            System.out.println(Thread.currentThread().getName()+"运行");
             Thread.sleep(5000);
             return 2;
         };
+        Callable callable2 = () -> {
+            System.out.println(Thread.currentThread().getName()+"运行");
+            Thread.sleep(4000);
+            return 2;
+        };
+        Future submit = executorService.submit(callable2);
         FutureTask<Integer> futureTask = new FutureTask(callable);
         executorService.submit(futureTask);
         try {
             Thread.sleep(1000);
             Integer integer = futureTask.get();
-            Integer calc = 10+integer;
+            Integer integer2 =(Integer) submit.get();
+            Integer calc = 10+integer+integer2;
             System.out.println("计算结果："+calc);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        long t2 = System.currentTimeMillis();
+        System.out.println("耗时"+(t2-t1));
+    }
+
+    public static void demo3(){
+        long t1 = System.currentTimeMillis();
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        List<Future> list = new ArrayList<>();
+        Integer result = 0;
+        for (int i = 0; i < 5 ; i++) {
+            Future future = executorService.submit(() -> {
+                System.out.println(Thread.currentThread().getName()+"运行");
+                Thread.sleep(5000);
+                return 2;
+            });
+            list.add(future);
+        }
+        try {
+            for (int i = 0; i <list.size() ; i++) {
+                result += (Integer) list.get(i).get();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(result);
         long t2 = System.currentTimeMillis();
         System.out.println("耗时"+(t2-t1));
     }
