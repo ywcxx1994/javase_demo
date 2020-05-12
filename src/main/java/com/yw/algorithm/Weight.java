@@ -9,6 +9,8 @@ import java.util.Random;
  * @author: yanwin
  * @Date: 2020/5/12
  * @Desc:按照权重设置奖品比例实现
+ *
+ * 参考：https://mp.weixin.qq.com/s/ubVBZO_x0Pzn9hwyka19wg
  */
 public class Weight {
 
